@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html>
+
+<style>
+ul {border:none; color:white; list-style-type: square; font-size:1.2vw}
+h1 {color:white; font-size:1.9vw}
+p {color:white; font-size:1.2vw}
+ul.a {border:none; color:white; list-style-type: decimal; font-size:1.2vw}
+.oil {
+        color: rgb(100, 100, 100);
+}
+.gray {
+        color: rgb(200, 200, 200);
+}
+.red {
+        color: rgb(200, 0, 0);
+  }
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.rotate {
+  animation: rotation 32s infinite linear;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+/* stolen code :) */
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid rgb(255, 255, 255);
+  border-top: none;
+}
+</style>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Comp Sci</title>
+</head>
+<body style="background:#23272A" onload="openSection(event, 'a')">
+  <p class="gray" onclick="alert('Don\'t worry about it')"> Site veiw coutner: -2 </p>
+<div style="height:30px;width:95%;margin:auto;background-color:#23272A;font-size:30px;color:white"></div>
+<div class="tab" style="width:99.5%;margin:auto;position:center">
+  <button class="tablinks" onclick="openSection(event, 'a')">Firewall Settings</button>
+  <button class="tablinks" onclick="openSection(event, 'b')">Suspicious Files</button>
+  <button class="tablinks" onclick="openSection(event, 'c')">Deleted Files</button>
+  <button class="tablinks" onclick="openSection(event, 'd')">Suspicious Processes</button>
+</div>
+
+<div id="a" class="tabcontent">
+  <h1>What to look for in firewall settings</h1>
+  <p>The goal of changing firewall settings is to close potentually dangerous ports you do not need open.</p>
+  <p>To change port configuration</p>
+  <ul class="a">
+    <li>Open Application Search
+    <li>Search for "Windows Firewall With Advanced Security" app and launch it
+    <li>Check inbound and outbound rules you don't need (like FTP traffic)
+    <li>Disable those rules by right clicking them and selecting that option</li>
+  </ul>
+</div>
+
+<div id="b" class="tabcontent">
+  <h1>How to identify suspicious files</h1>
+  <p>Suspicious files can be hidden and obfuscated in order to stop the user from interfering with them</p>
+  <p>These tactics include:</p>
+  <ul>
+    <li>Labeling files as "hidden" so they do not show in the file explorer by default
+    <li>Using multiple file extensions to make powerful file types look like less powerful ones
+    <li>Hiding files in obscure locations with obscure names.</li>
+  </ul>
+  <p>These strategies can be midigated by showing file extensions and hidden files</p>
+</div>
+
+<div id="c" class="tabcontent">
+  <h1>Where do deleted files go?</h1>
+  <p>It turns out, nowhere. Files are stored in sectors on a drive. When you want to access a file, the computer looks up the sector it is located in and then gets the file from that location.</p>
+  <p>when you delete a file, instead of wiping the sectors of the drive that the file is stored in, the computer chooses to save resources and time by just marking those sectors as "free to write to" as they will be eventaully overritten when that space is filled by new files.</p>
+  <p>Remember that without the use of third party programs, nothing is really deleted when you press that button</p>
+</div>
+
+<div id="d" class="tabcontent">
+  <h1>How do I know if bad stuff is running on my computer?</h1>
+  <p>The Task Manager application shows all programs currently running on your computer. If there are programs that you are suspicious of, there are a few ways to check if they are legitiment</p>
+  <ul>
+    <li>Check the program's location of origin in the file manager 
+    <li>Check the user who ran the program
+    <li>Check the programs digital certificate in it's properties</li>
+  </ul>
+  <p>If you do find a suspicious process, make sure to end the entire task tree as parent tasks can just relaunch malicious programs.</p>
+  <p>Deleting the files from the process origin is also good idea.</p>
+</div>
+
+<p></p>
+<img src="cyber lifecycle.png" class="rotate">
+<script>
+function openSection(evt, secName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(secName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+</body>
+</html>
